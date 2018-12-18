@@ -4,8 +4,12 @@
                 
         <AppControlInput v-model="editedPost.title">Title</AppControlInput>
                 
-        <AppControlInput v-model="editedPost.thumbnailLink">Thumbnail Link</AppControlInput>
+        <AppControlInput v-model="editedPost.thumbnail">Thumbnail Link</AppControlInput>
                 
+        <AppControlInput
+          control-type="textarea"
+          v-model="editedPost.previewText">Preview Text</AppControlInput>
+        
         <AppControlInput
           control-type="textarea"
           v-model="editedPost.content">Content</AppControlInput>
@@ -41,15 +45,16 @@ import AppButton from '@/components/UI/AppButton'
                 : {
                     author: '',
                     title: '',
-                    thumbnailLink: '',
-                    content: ''
+                    thumbnail: '',
+                    content: '',
+                    previewText: ''
                 }
             };
         },
         methods: {
             onSave() {
                 // Save post
-                console.log(this.editedPost);
+                this.$emit('submit', this.editedPost)
             },
             onCancel() {
                 // Navigate back
