@@ -39,14 +39,21 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~plugins/core-components.js'
+    '~plugins/core-components.js',
+    '~plugins/date-filter.js'
   ],
 
   /*
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios'
   ],
+  
+  axios: {
+    baseURL: process.env.BASE_URL || 'https://nuxt-blog-89927.firebaseio.com',
+    credentials: false
+  },
 
   /*
   ** Build configuration
@@ -65,5 +72,8 @@ module.exports = {
   transition: {
     name: 'fade',
     mode: 'out-in'
+  },
+  router: {
+    middleware: 'log'
   }
 }
