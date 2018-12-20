@@ -12,6 +12,7 @@
 
 <script>
     export default {
+        middleware: ['auth'],
         layout: 'admin',
         computed: {
             loadedPosts() {
