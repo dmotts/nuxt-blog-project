@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 import Cookie from 'js-cookie'
+import axiosAPI from '@/axios-api'
 
 const createStore = () => {
     return new Vuex.Store({
@@ -79,6 +80,8 @@ const createStore = () => {
                 localStorage.setItem("tokenExpiration", new Date().getTime() + Number.parseInt(result.expiresIn) * 1000);
                 Cookie.set('jwt', result.idToken)
                 Cookie.set('expirationDate', new Date().getTime() + Number.parseInt(result.expiresIn) * 1000)
+
+                return axiosAPI.post('/api/track-data', {data: 'Authenticated!'})
               })
               .catch(e => console.log(e))
               
